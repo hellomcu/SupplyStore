@@ -6,6 +6,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="java-output-path" value="/SpringMVC-1_Building_Project/target/classes"/>
-        <property name="context-root" value="Supply"/>
+        <property name="context-root" value="Store"/>
     </wb-module>
 </project-modules>
