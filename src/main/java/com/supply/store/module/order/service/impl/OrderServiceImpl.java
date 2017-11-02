@@ -30,7 +30,9 @@ public class OrderServiceImpl implements OrderService
 		//创建订单
 		int size = orderDetails.size();
 		order.setProductNum(size);
-		order.setTotalPrice(calcTotalPrice(orderDetails));
+		OrderPo tmp = calcTotalPrice(orderDetails);
+		order.setTotalPrice(tmp.getTotalPrice());
+		order.setTotalNum(tmp.getTotalNum());
 		order.setOrderStatus(OrderStatus.STATUS_UNDER);
 		int row = mOrderRepository.saveOrder(order);
 		if (row != 1)
@@ -51,15 +53,20 @@ public class OrderServiceImpl implements OrderService
 	
 	}
 	
-	private BigDecimal calcTotalPrice(List<OrderDetailPo> orderDetails)
+	private OrderPo calcTotalPrice(List<OrderDetailPo> orderDetails)
 	{
-		BigDecimal total = new BigDecimal("0.00");
+		BigDecimal totalPrice = new BigDecimal("0.00");
+		int totalNum = 0;
 		for (OrderDetailPo detail : orderDetails)
 		{
-			total = total.add(detail.getUnitPrice().multiply(new BigDecimal(detail.getProductNum())));
+			int num = detail.getProductNum();
+			totalPrice = totalPrice.add(detail.getUnitPrice().multiply(new BigDecimal(num)));
+			totalNum += num;
 		}
-		
-		return total;
+		OrderPo order = new OrderPo();
+		order.setTotalPrice(totalPrice);
+		order.setTotalNum(totalNum);
+		return order;
 	}
 	
 	@Resource(name="orderRepository")

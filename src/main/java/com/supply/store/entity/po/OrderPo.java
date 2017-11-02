@@ -17,6 +17,7 @@ public class OrderPo extends BasePo
 	private long storeId;
 	private BigDecimal totalPrice;
 	private int productNum;
+	private int totalNum;
 	private String receivingAddress;
 	private String contacts;
 	private String contactWay;
@@ -95,6 +96,14 @@ public class OrderPo extends BasePo
 	public void setStoreName(String storeName)
 	{
 		this.storeName = storeName;
+	}
+	public int getTotalNum()
+	{
+		return totalNum;
+	}
+	public void setTotalNum(int totalNum)
+	{
+		this.totalNum = totalNum;
 	}
 	
 

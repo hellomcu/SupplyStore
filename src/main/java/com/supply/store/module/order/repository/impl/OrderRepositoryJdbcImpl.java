@@ -22,12 +22,12 @@ public class OrderRepositoryJdbcImpl implements OrderRepository
 {
 
 
-	private static final String SQL_SAVE_ORDER = "INSERT INTO t_order (store_id, total_price, product_num, receiving_address, contacts, order_status, order_remark, create_time) VALUES (:store_id, :total_price, :product_num, :receiving_address, :contacts, :order_status, :order_remark, :create_time)";
+	private static final String SQL_SAVE_ORDER = "INSERT INTO t_order (store_id, total_price, product_num, total_num, receiving_address, contacts, order_status, order_remark, create_time) VALUES (:store_id, :total_price, :product_num, :total_num, :receiving_address, :contacts, :order_status, :order_remark, :create_time)";
+	
 	
 	private static final String SQL_SAVE_ORDER_DETAIL = "INSERT INTO t_order_detail(order_id, product_id, product_name, product_num, unit_price, product_unit, create_time) VALUES (:order_id, :product_id, :product_name, :product_num, :unit_price, :product_unit, :create_time)";
 	
 	
-
 	private NamedParameterJdbcTemplate mNamedParameterJdbcTemplate;
 
 	
@@ -47,6 +47,7 @@ public class OrderRepositoryJdbcImpl implements OrderRepository
 		paramSource.addValue("store_id", order.getStoreId());
 		paramSource.addValue("total_price", order.getTotalPrice());
 		paramSource.addValue("product_num", order.getProductNum());
+		paramSource.addValue("total_num", order.getTotalNum());
 		paramSource.addValue("receiving_address", order.getReceivingAddress());
 		
 		paramSource.addValue("contacts", order.getContacts());
