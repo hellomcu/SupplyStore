@@ -33,7 +33,7 @@ public class OrderRepositoryJdbcImpl implements OrderRepository
 	
 	
 	private static final String SQL_QUERY_BY_STOREID = "SELECT o.id order_id, o.total_price total_price, o.order_status order_status, o.create_time create_time," + 
-			"od.id detail_id, od.product_id product_id, od.product_name product_name, od.product_num product_num, od.unit_price unit_price, od.product_unit product_unit" + 
+			" od.id detail_id, od.product_id product_id, od.product_name product_name, od.product_num product_num, od.unit_price unit_price, od.product_unit product_unit" + 
 			" FROM t_order o" + 
 			" LEFT JOIN t_order_detail od" + 
 			" ON o.id = od.order_id AND od.status = 0" + 
