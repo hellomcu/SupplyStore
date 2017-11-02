@@ -1,6 +1,7 @@
 package com.supply.store.entity.po;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.supply.store.config.contants.OrderStatus;
 import com.supply.store.entity.base.BasePo;
@@ -25,6 +26,7 @@ public class OrderPo extends BasePo
 	private String orderRemark;
 	private String storeName;
 	
+
 	public long getStoreId()
 	{
 		return storeId;
@@ -105,6 +107,5 @@ public class OrderPo extends BasePo
 	{
 		this.totalNum = totalNum;
 	}
-	
 
 }

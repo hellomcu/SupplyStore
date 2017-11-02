@@ -2,6 +2,7 @@ package com.supply.store.module.order.service.impl;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.supply.store.config.contants.OrderStatus;
+import com.supply.store.entity.PageInfo;
 import com.supply.store.entity.po.OrderDetailPo;
 import com.supply.store.entity.po.OrderPo;
 import com.supply.store.exception.SupplyException;
@@ -30,7 +32,7 @@ public class OrderServiceImpl implements OrderService
 		//创建订单
 		int size = orderDetails.size();
 		order.setProductNum(size);
-		OrderPo tmp = calcTotalPrice(orderDetails);
+		OrderPo tmp = calcTotalPriceAndNum(orderDetails);
 		order.setTotalPrice(tmp.getTotalPrice());
 		order.setTotalNum(tmp.getTotalNum());
 		order.setOrderStatus(OrderStatus.STATUS_UNDER);
@@ -53,7 +55,15 @@ public class OrderServiceImpl implements OrderService
 	
 	}
 	
-	private OrderPo calcTotalPrice(List<OrderDetailPo> orderDetails)
+	
+	@Override
+	public Map<OrderPo, List<OrderDetailPo>> findMyOrders(PageInfo page, long storeId)
+	{
+		return mOrderRepository.findByStoreId(page, storeId);
+	}
+
+	
+	private OrderPo calcTotalPriceAndNum(List<OrderDetailPo> orderDetails)
 	{
 		BigDecimal totalPrice = new BigDecimal("0.00");
 		int totalNum = 0;
@@ -81,12 +91,5 @@ public class OrderServiceImpl implements OrderService
 	{
 		this.mProductRepository = productRepository;
 	}
-
-
-
-	
-
-
-	
 	
 }
