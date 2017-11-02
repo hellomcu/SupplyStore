@@ -1,7 +1,6 @@
 package com.supply.store.entity.po;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import com.supply.store.config.contants.OrderStatus;
 import com.supply.store.entity.base.BasePo;
